@@ -3,6 +3,7 @@ import path from "path";
 import chalk from "chalk";
 
 import indexRouter from "./routes/index.router";
+import apiRouter from "./routes/api.router";
 
 const app = express();
 const PORT = 4000;
@@ -13,6 +14,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // routes
 app.use("/", indexRouter);
+app.use("/api", apiRouter);
 
 // server
 app.listen(PORT, () => {
