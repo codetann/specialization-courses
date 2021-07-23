@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Apple",
+    "wholePrice": 19.99,
+    "slicePrice": 4.99,
+    "sliceCalories": 67,
+    "imageUrl": "images/apple.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Oreo",
+    "wholePrice": 24.99,
+    "slicePrice": 7.99,
+    "sliceCalories": 1.2,
+    "imageUrl": "images/oreo.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Pumpkin",
+    "wholePrice": 17.99,
+    "slicePrice": 3.99,
+    "sliceCalories": 45,
+    "imageUrl": "images/pumpkin.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Cherry",
+    "wholePrice": 19.99,
+    "slicePrice": 4.99,
+    "sliceCalories": 67,
+    "imageUrl": "images/cherry.jpg"
+  }
+]
