@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 import Layout from "../../components/Layout";
 
-export default function slug() {
+export default function Slug() {
   const router = useRouter();
   const { slug } = router.query;
 

@@ -1,8 +1,38 @@
+import { ApolloServer, gql } from "apollo-server-micro";
 import chalk from "chalk";
 
-export default (req, res) => {
-  if (process.env.NODE_ENV === "development")
-    console.log(`${chalk.green("api")}   - graphql enpoint hit`);
+const typeDefs = gql`
+  type Query {
+    sayHello: String
+  }
+`;
 
-  res.status(200).json({ test: "Hello Level Up" });
+const resolvers = {
+  Query: {
+    sayHello: (parent, args, context) => {
+      return "Hello Level Up";
+    },
+  },
+};
+
+// const apolloServer = async () => {
+//   const server = new ApolloServer({ typeDefs, resolvers });
+//   await server.start();
+//   return server;
+// };
+
+// const startServer = async () => {
+//   const server = await apolloServer();
+//   server.createHandler({ path: "/api/graphql" });
+//   return server;
+// };
+
+const apolloServer = new ApolloServer({ typeDefs, resolvers });
+
+export default apolloServer.createHandler({ path: "/api/graphql" });
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
 };
