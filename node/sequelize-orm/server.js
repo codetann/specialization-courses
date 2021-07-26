@@ -16,6 +16,9 @@ const port = 8001;
 // connect to db
 db.connect();
 
+// middleware
+app.use(express.json());
+
 // routes
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
