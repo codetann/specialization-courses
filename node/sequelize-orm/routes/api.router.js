@@ -1,5 +1,5 @@
 import express from "express";
-import db from "../database/db";
+import API from "../controllers/api.controller";
 
 const router = express.Router();
 
@@ -12,73 +12,27 @@ const router = express.Router();
  *
  * @ /api/filter - returns users based on criteria
  */
-router.get("/find", async (req, res) => {
-  const { id } = req.query;
-
-  try {
-    const user = await db.findUser(id);
-    res.json(user);
-  } catch (error) {
-    console.error(err);
-    res.status(404).send(error);
-  }
-});
-router.get("/findall", async (req, res) => {
-  try {
-    const users = await db.findAllUsers();
-    res.json(users);
-  } catch (err) {
-    console.error(err);
-    res.status(404).send(error);
-  }
-});
-router.get("/filter", async (req, res) => {
-  //// const { name } = req.query;
-
-  try {
-    const users = await db.filterUsers();
-    res.json(users);
-  } catch (err) {
-    console.error(err);
-    res.status(404).send(error);
-  }
-});
+router.get("/find", API.GET.find);
+router.get("/findall", API.GET.findAll);
+router.get("/filter", API.GET.filter);
 
 /**
  * POST
  *
  * @ /api/post - creates a new user
  */
-router.post("/post", async (req, res) => {
-  const newUser = req.body.user;
-
-  try {
-    await db.createUser({
-      name: newUser.name,
-      email: newUser.email,
-      password: newUser.password,
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(404).send(err);
-  }
-});
+router.post("/post", API.POST.createUser);
 
 /**
  * PUT
  *
  * @ /api/update - updates a users name and password based on id provided
  */
-router.put("/update", async (req, res) => {
-  const { name, password, id } = req.body;
+router.put("/update", API.PUT.updateUser);
 
-  try {
-    await db.updateUser(name, password, id);
-    res.status(200).send("success");
-  } catch (err) {
-    console.error(err);
-    res.status(404).send(err);
-  }
-});
+/**
+ * DELETE
+ */
+router.delete("/remove", API.DEL.deleteUser);
 
 export default router;
