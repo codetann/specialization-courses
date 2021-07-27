@@ -1,9 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import HomePage from "./home/HomePage";
 import AboutPage from "./about/AboutPage";
+import PageNotFound from "./PageNotFound";
 import Header from "./common/Header";
 
 export default function App() {
@@ -11,8 +12,11 @@ export default function App() {
     <Router>
       <div className="container-fluid">
         <Header />
-        <Route exact path="/" component={HomePage} />
-        <Route path="/about" component={AboutPage} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/about" component={AboutPage} />
+          <Route component={PageNotFound} />
+        </Switch>
       </div>
     </Router>
   );
