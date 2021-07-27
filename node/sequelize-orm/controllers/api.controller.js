@@ -3,9 +3,9 @@ import db from "../database/db";
 
 const Op = Sequelize.Op;
 const User = db.User;
+const Posts = db.Posts;
 
 const GET = {
-  // returns all users
   findAll: async (req, res) => {
     console.log(User);
     try {
@@ -15,8 +15,6 @@ const GET = {
       res.status(404).send(error);
     }
   },
-
-  // returns 1 user based on the id provided
   find: async (req, res) => {
     const { id } = req.query;
 
@@ -28,8 +26,6 @@ const GET = {
       res.status(404).send(error);
     }
   },
-
-  // returns users based on criteria
   filter: async (req, res) => {
     try {
       const users = await User.findAll({
@@ -45,10 +41,21 @@ const GET = {
       res.status(404).send(error);
     }
   },
+  allPosts: async (req, res) => {
+    try {
+      const posts = await Posts.findAll({
+        include: [User],
+      });
+      res.json(posts);
+    } catch (error) {
+      console.error(error);
+      res.status(404).send(error);
+    }
+  },
 };
 
 const POST = {
-  createUser: async () => {
+  createUser: async (req, res) => {
     const newUser = req.body.user;
 
     try {
@@ -60,6 +67,17 @@ const POST = {
       res.send("success");
     } catch (error) {
       console.error(error);
+      res.status(404).send(error);
+    }
+  },
+  createPost: async (req, res) => {
+    try {
+      await Posts.create({
+        UserId: 1,
+        title: "First post",
+        content: "post content 1",
+      });
+    } catch (error) {
       res.status(404).send(error);
     }
   },
