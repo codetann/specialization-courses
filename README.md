@@ -6,6 +6,7 @@ their own repositories created a mess on my github so I decided to put them all 
 The courses are grouped together based on the technology used.
 
     .
-    ├── node                    # Node / Express projects
-    ├── react                   # React Projects
+    ├── node                    # Node / Express courses
+    ├── react                   # React courses
+    ├── projects                # Projects / Exercises from class
     └── README
